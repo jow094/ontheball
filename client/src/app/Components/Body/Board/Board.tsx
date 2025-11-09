@@ -42,7 +42,7 @@ export default function Board({ socket, address }: BoardProps) {
                 <td>
                   <div className={styles.tdContent}>
                     <span className={styles.title}>
-                      asdasdasdsaasdasdsadasdasdasdasdasdsasdasadasdsadasdasdasdasdasdasdasdasdasdasdasdasdasdadasdasdasdasd
+                      gk tlqkf 병ㅅ1ㄴ같은 CORS
                     </span>
                     <span className={styles.subTitle}>
                       <HeartIcon

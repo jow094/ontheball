@@ -33,6 +33,10 @@
   table-layout: fixed;
 }
 
+.boardTable tbody tr{
+  cursor: pointer;
+}
+
 .boardTable thead th {
   border-bottom: 1px solid #ccc;
   padding: 8px;
@@ -66,6 +70,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  user-select: text;
 }
 .subTitle{
   display: flex;

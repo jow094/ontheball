@@ -5,6 +5,14 @@ import styles from "./NavBar.module.css";
 import { useTapStore } from "@/store/store";
 import clsx from "clsx";
 import { Socket } from "socket.io-client";
+import {
+  SoccerBallIcon,
+  BasketballIcon,
+  BaseballIcon,
+  UsersIcon,
+  UserCircleIcon,
+  ChatCenteredIcon,
+} from "@phosphor-icons/react";
 
 interface NavBarProps {
   socket: Socket | null;
@@ -25,6 +33,14 @@ export default function NavBar({ socket }: NavBarProps) {
           )}
           onClick={() => setSelectedTab("soccer")}
         >
+          <SoccerBallIcon
+            size={20}
+            weight="fill"
+            style={{
+              marginRight: "10px",
+              marginBottom: "3px",
+            }}
+          />
           SOCCER
         </div>
         <div
@@ -34,6 +50,14 @@ export default function NavBar({ socket }: NavBarProps) {
           )}
           onClick={() => setSelectedTab("baseball")}
         >
+          <BaseballIcon
+            size={20}
+            weight="fill"
+            style={{
+              marginRight: "10px",
+              marginBottom: "3px",
+            }}
+          />
           BASEBALL
         </div>
         <div
@@ -43,6 +67,14 @@ export default function NavBar({ socket }: NavBarProps) {
           )}
           onClick={() => setSelectedTab("basketball")}
         >
+          <BasketballIcon
+            size={20}
+            weight="fill"
+            style={{
+              marginRight: "10px",
+              marginBottom: "3px",
+            }}
+          />
           BASKETBALL
         </div>
         <div
@@ -52,6 +84,14 @@ export default function NavBar({ socket }: NavBarProps) {
           )}
           onClick={() => setSelectedTab("community")}
         >
+          <UsersIcon
+            size={20}
+            weight="fill"
+            style={{
+              marginRight: "10px",
+              marginBottom: "3px",
+            }}
+          />
           COMMUNITY
         </div>
         <div

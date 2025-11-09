@@ -31,17 +31,23 @@ export default function Body({ socket }: BodyProps) {
 
   return (
     <div className={styles.container}>
-      <div className={styles.verticalAd}>vad1</div>
+      <div className={styles.verticalAd}>
+        <div className={styles.leftAd}></div>
+      </div>
       <div className={styles.bodyWrapper}>
         <div className={styles.chat}>
           <Chat socket={socket} />
         </div>
         <div className={styles.content}>
           <div className={styles.article}>{getArticle()}</div>
-          <div className={styles.horizontalAd}>had1</div>
+          <div className={styles.horizontalAd}>
+            <div className={styles.bottomAd}></div>
+          </div>
         </div>
       </div>
-      <div className={styles.verticalAd}>vad2</div>
+      <div className={styles.verticalAd}>
+        <div className={styles.rightAd}></div>
+      </div>
     </div>
   );
 }
