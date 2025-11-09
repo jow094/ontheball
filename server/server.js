@@ -42,7 +42,7 @@ const db = mysql.createPool({
   queueLimit: 0
 });
 
-await db.query("SET time_zone = '+09:00'");
+// await db.query("SET time_zone = '+09:00'");
 
 // Middleware
 app.use(express.json());
