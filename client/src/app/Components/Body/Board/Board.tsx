@@ -32,7 +32,6 @@ export default function Board({ socket, address }: BoardProps) {
               <tr>
                 <th>번호</th>
                 <th>제목</th>
-                <th></th>
                 <th>작성자</th>
                 <th>작성일</th>
               </tr>
@@ -41,21 +40,25 @@ export default function Board({ socket, address }: BoardProps) {
               <tr>
                 <td>1</td>
                 <td>
-                  <span className={styles.title}>ㅇ</span>
-                </td>
-                <td>
-                  <HeartIcon
-                    size={15}
-                    weight="fill"
-                    style={{ marginRight: "3px" }}
-                  />
-                  311
-                  <ChatCenteredIcon
-                    size={15}
-                    weight="fill"
-                    style={{ marginLeft: "5px", marginRight: "3px" }}
-                  />
-                  233
+                  <div className={styles.tdContent}>
+                    <span className={styles.title}>
+                      asdasdasdsaasdasdsadasdasdasdasdasdsasdasadasdsadasdasdasdasdasdasdasdasdasdasdasdasdasdadasdasdasdasd
+                    </span>
+                    <span className={styles.subTitle}>
+                      <HeartIcon
+                        size={15}
+                        weight="fill"
+                        style={{ marginRight: "3px" }}
+                      />
+                      311
+                      <ChatCenteredIcon
+                        size={15}
+                        weight="fill"
+                        style={{ marginLeft: "5px", marginRight: "3px" }}
+                      />
+                      233
+                    </span>
+                  </div>
                 </td>
                 <td>조우영</td>
                 <td>25.11.09 21:04</td>
