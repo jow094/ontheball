@@ -3,7 +3,6 @@ import cors from "cors";
 import dotenv from "dotenv";
 import mysql from "mysql2/promise";
 import logUserVisitRouter from "./routes/log.js";
-import cors from "cors";
 
 dotenv.config();
 
@@ -26,8 +25,6 @@ app.use(cors({
   origin: process.env.CORS_ORIGIN.split(","),
   credentials: true
 }));
-
-app.use(cors(corsOptions));
 
 //routes
 app.use("/api", logUserVisitRouter(db));
