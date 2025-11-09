@@ -6,7 +6,7 @@ const router = express.Router();
 export default function logUserVisitRouter(db) {
 
   router.post("/visit", async (req, res) => {
-    const userKey = req.body.userKey;  // 또는 세션, JWT 등에서 가져옴
+    const userKey = req.body.userKey;
     const ip = req.ip;
 
     if (!userKey) return res.status(400).json({ success: false, error: "No userKey" });
