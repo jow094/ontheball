@@ -1,6 +1,7 @@
 .container{
     height:100%;
     display: flex;
+    box-shadow: 0px -3px 2px 2px rgba(0,0,0,0.1)
 }
 .body{
     width:300px;
@@ -9,9 +10,10 @@
     display: flex;
     flex-direction: column;
     height:100%;
-    padding:5px; 
+    padding:10px 0 10px 10px; 
     transition: all 0.3s;
     overflow: hidden;
+    gap:10px;
 }
 .body *{
     transition: all 0.3s;
@@ -26,24 +28,62 @@
     max-height: calc(100% - 100px);
     overflow-x: hidden;
     overflow-y: auto;
+    gap:10px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    box-shadow: var(--box-shadow-inset);
+    padding:10px;
 }
 .input{
     width:100%;
     height: 100px;
     display: flex;
+    gap:5px;
 }
 .input textarea{
     flex:1;
     width:100%;
     height: 100px;
+    resize: none;
+    padding:5px;
+    font-size:14px;
+    border-radius: 5px;
+    border:none;
+    background-color: rgba(240,240,240,0.1);
+    box-shadow: var(--box-shadow-inset)
 }
 .sendButton{
+    border-radius: 5px;
     width:30px;
     height: 100%;
+    background-color: var(--sub-signature);
+    box-shadow: var(--box-shadow)
 }
-.message{
-    width:100%;
-    max-width:100%;
-    min-height: 50px;
-    overflow-wrap: break-word;
+.messageBox {
+  display: flex;
+  flex-direction: column;
+  gap:5px;
+}
+
+.message {
+  display: inline-block;
+  max-width: 100%;
+  padding: 5px;
+  border-radius: 5px;
+  line-height: 1.2;
+  white-space: normal;
+  overflow-wrap: break-word;
+  font-size:14px;
+  box-shadow: var(--box-shadow);
+  background-color: rgba(240,240,240,0.1);
+}
+
+.sender {
+  font-weight: bold;
+}
+
+.time{
+    margin-left:auto;
+    font-size: 11px;
 }

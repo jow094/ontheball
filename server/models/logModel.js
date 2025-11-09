@@ -1,5 +1,4 @@
 /**
- * 방문/행동 로그 기록
  * @param {Pool} db - mysql2/promise 풀
  * @param {number} userKey - USER 테이블의 USER_KEY
  * @param {string} userId - 유저 아이디

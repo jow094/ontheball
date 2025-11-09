@@ -12,12 +12,15 @@
   justify-content: center;
   align-items: center;
   color:white;
+  font-weight: bold;
+  user-select: none;
 }
 .menus{  
   flex:1;
   height: 100%;
   display: flex;
-  padding-top:50px;
+  padding-top:40px;
+  padding-bottom: 10px;
 }
 .menu{  
   color:white;
@@ -25,13 +28,15 @@
   height: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
   border: 3px solid black;
   transition: all 0.3s;
   cursor:pointer;
+  font-weight: bold;
+  user-select: none;
 }
 .menu:hover,.active{  
-  border-bottom: 3px solid white;
+  border-bottom: 3px solid var(--signature);
 }
 .profile{  
   width:300px;

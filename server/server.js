@@ -2,51 +2,79 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import mysql from "mysql2/promise";
-import logUserVisitRouter from "./routes/log.js";
+import http from "http";
+import { Server } from "socket.io";
+import logUserVisitRouter from "./routes/logRouter.js";
+import { getMessagesRouter, sendMessagesRouter } from "./routes/chatRouter.js";
 
 dotenv.config();
 
 const app = express();
+const server = http.createServer(app);
 
-// DB 연결 설정
-const db = await mysql.createPool({
+// CORS 허용 도메인
+const allowedOrigins = process.env.CORS_ORIGIN.split(",").map(s => s.trim());
+
+// Socket.IO 서버
+const io = new Server(server, {
+  cors: {
+    origin: allowedOrigins,
+    methods: ["GET", "POST"]
+  }
+});
+
+// 웹소켓 이벤트
+io.on("connection", (socket) => {
+
+  socket.on("disconnect", () => {
+    console.log("사용자 연결 해제:", socket.id);
+  });
+});
+
+// DB 풀 생성
+const db = mysql.createPool({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD || "", // 비밀번호 없으면 빈 문자열
+  password: process.env.DB_PASSWORD || "",
   database: process.env.DB_NAME,
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0
 });
 
+await db.query("SET time_zone = '+09:00'");
+
 // Middleware
 app.use(express.json());
 app.use(cors({
-  origin: process.env.CORS_ORIGIN.split(","),
-  credentials: true
+  origin: function(origin, callback){
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
+  methods: ["GET","POST","PUT","DELETE","OPTIONS"]
 }));
 
-//routes
+// 라우트
 app.use("/api", logUserVisitRouter(db));
+app.use("/api", getMessagesRouter(db));
+app.use("/api", sendMessagesRouter(db,io));
 
-// ✅ 기본 라우트
+// 기본 테스트 라우트
 app.get("/", (req, res) => {
   res.send("Backend server is running 🚀");
 });
 
-// ✅ 예시 API
 app.get("/api/test", (req, res) => {
   res.json({ message: "Hello from the backend!" });
 });
 
-// ✅ 서버 실행
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));
-
-// DB테스트
 app.get("/api/dbTest", async (req, res) => {
   try {
-    console.log('try to connect db');
     const [rows] = await db.query("SELECT NOW() AS now");
     res.json({ success: true, time: rows[0].now });
   } catch (error) {
@@ -55,3 +83,6 @@ app.get("/api/dbTest", async (req, res) => {
   }
 });
 
+// 서버 실행
+const PORT = process.env.PORT || 5000;
+server.listen(PORT, () => console.log(`웹소켓 서버 실행중`));

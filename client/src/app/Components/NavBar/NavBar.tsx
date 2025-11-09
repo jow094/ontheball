@@ -2,16 +2,21 @@
 
 import Image from "next/image";
 import styles from "./NavBar.module.css";
-import { useStore } from "@/store/store";
+import { useTapStore } from "@/store/store";
 import clsx from "clsx";
+import { Socket } from "socket.io-client";
 
-export default function NavBar() {
-  const setSelectedTab = useStore((state) => state.setSelectedTab);
-  const selectedTab = useStore((state) => state.selectedTab);
+interface NavBarProps {
+  socket: Socket | null;
+}
+
+export default function NavBar({ socket }: NavBarProps) {
+  const setSelectedTab = useTapStore((state) => state.setSelectedTab);
+  const selectedTab = useTapStore((state) => state.selectedTab);
 
   return (
     <div className={styles.container}>
-      <div className={styles.logo}>OnTheBall</div>
+      <div className={styles.logo}>ON THE BALL</div>
       <div className={styles.menus}>
         <div
           className={clsx(
@@ -20,7 +25,7 @@ export default function NavBar() {
           )}
           onClick={() => setSelectedTab("soccer")}
         >
-          Soccer
+          SOCCER
         </div>
         <div
           className={clsx(
@@ -29,7 +34,7 @@ export default function NavBar() {
           )}
           onClick={() => setSelectedTab("baseball")}
         >
-          Baseball
+          BASEBALL
         </div>
         <div
           className={clsx(
@@ -38,25 +43,25 @@ export default function NavBar() {
           )}
           onClick={() => setSelectedTab("basketball")}
         >
-          Basketball
+          BASKETBALL
         </div>
         <div
           className={clsx(
             styles.menu,
-            selectedTab === "volleyball" && styles.active
+            selectedTab === "community" && styles.active
           )}
-          onClick={() => setSelectedTab("volleyball")}
+          onClick={() => setSelectedTab("community")}
         >
-          Volleyball
+          COMMUNITY
         </div>
         <div
           className={clsx(
             styles.menu,
-            selectedTab === "hockey" && styles.active
+            selectedTab === "uyeong" && styles.active
           )}
-          onClick={() => setSelectedTab("hockey")}
+          onClick={() => setSelectedTab("uyeong")}
         >
-          Hockey
+          UYEONG
         </div>
       </div>
       <div className={styles.profile}></div>
