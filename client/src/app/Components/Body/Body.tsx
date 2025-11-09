@@ -6,8 +6,7 @@ import styles from "./Body.module.css";
 import Chat from "./Chat/Chat";
 import { useEffect } from "react";
 import axios from "axios";
-export const API_BASE =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+import api from "../../../../utils/api";
 
 export default function Body() {
   const selectedTab = useStore((state) => state.selectedTab);
@@ -19,8 +18,8 @@ export default function Body() {
     fetch("http://localhost:5000/api/dbTest")
       .then((res) => res.json())
       .then((data) => console.log(data));
-    axios
-      .post(`${API_BASE}/api/visit`, { userKey: 1 })
+    api
+      .post("/visit", { userKey: 123 })
       .then((res) => console.log(res.data))
       .catch((err) => console.error(err));
   }, []);
