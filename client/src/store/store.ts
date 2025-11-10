@@ -11,7 +11,7 @@ export type State = {
 };
 
 export const useTapStore = create<State>((set) => ({
-  selectedTab: "home",
+  selectedTab: "soccer",
   setSelectedTab: (tab: string) => set({ selectedTab: tab }),
 }));
 

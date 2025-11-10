@@ -7,6 +7,8 @@ import { useEffect } from "react";
 import { logUserVisit } from "../../../../services/logServices";
 import { Socket } from "socket.io-client";
 import Board from "./Board/Board";
+import clsx from "clsx";
+import Soccer from "./Sports/Soccer";
 
 interface BodyProps {
   socket: Socket | null;
@@ -20,6 +22,8 @@ export default function Body({ socket }: BodyProps) {
       case "community":
       case "uyeong":
         return <Board socket={socket} address={selectedTab} />;
+      case "soccer":
+        return <Soccer socket={socket} />;
       default:
         return <div>{selectedTab}</div>;
     }
@@ -32,7 +36,7 @@ export default function Body({ socket }: BodyProps) {
   return (
     <div className={styles.container}>
       <div className={styles.verticalAd}>
-        <div className={styles.leftAd}></div>
+        <div className={clsx(styles.ad, styles.leftAd)}></div>
       </div>
       <div className={styles.bodyWrapper}>
         <div className={styles.chat}>
@@ -41,12 +45,12 @@ export default function Body({ socket }: BodyProps) {
         <div className={styles.content}>
           <div className={styles.article}>{getArticle()}</div>
           <div className={styles.horizontalAd}>
-            <div className={styles.bottomAd}></div>
+            <div className={clsx(styles.ad, styles.bottomAd)}></div>
           </div>
         </div>
       </div>
       <div className={styles.verticalAd}>
-        <div className={styles.rightAd}></div>
+        <div className={clsx(styles.ad, styles.rightAd)}></div>
       </div>
     </div>
   );

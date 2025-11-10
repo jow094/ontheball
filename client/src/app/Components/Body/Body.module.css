@@ -36,31 +36,34 @@
 .article{
   flex:1;
   width: 100%;
+  height: 100%;
   /* border:var(--border); */
 }
 
-.leftAd {
+.ad{
+  /* border:var(--border); */
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width:100%;
   height:100%;
-  background-image: url('/images/vertical_ad.png');
-  background-size: cover;     
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
+  background-color: transparent;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+.ad:hover{
+  border:var(--border);
+}
+.leftAd {
+  background-image: url('/images/vertical_ad.png');
 }
 .rightAd {
-  width:100%;
-  height:100%;
   background-image: url('/images/vertical_ad2.jpg');
-  background-size: cover;     
-  background-position: center;
-  background-repeat: no-repeat;
 }
 .bottomAd {     
-  width:100%;
-  height:100%; 
   background-image: url('/images/horizontal_ad.png');
-  background-size: cover;     
-  background-position: center;
-  background-repeat: no-repeat;
 }
 

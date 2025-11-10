@@ -43,12 +43,6 @@ export default function Chat({ socket }: ChatProps) {
     });
   };
 
-  // useEffect(() => {
-  //   getMessages().then((msgs) => {
-  //     setMessages(arrayToCamel(msgs.data) as Message[]);
-  //   });
-  // }, []);
-
   const executeSendMessage = () => {
     if (inputValue.trim()) {
       sendMessages(2, "GUEST", "GUEST", inputValue);

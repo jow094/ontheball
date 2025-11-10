@@ -5,6 +5,7 @@ import mysql from "mysql2/promise";
 import http from "http";
 import { Server } from "socket.io";
 import logUserVisitRouter from "./routes/logRouter.js";
+import {getSoccerFixtureListRouter,getLiveSoccerFixtureListRouter}  from "./routes/sportsRouter.js";
 import { getMessagesRouter, sendMessagesRouter } from "./routes/chatRouter.js";
 
 dotenv.config();
@@ -68,26 +69,11 @@ app.use((req, res, next) => {
 app.use("/api", logUserVisitRouter(db));
 app.use("/api", getMessagesRouter(db));
 app.use("/api", sendMessagesRouter(db,io));
-
-// 기본 테스트 라우트
-app.get("/", (req, res) => {
-  res.send("Backend server is running 🚀");
-});
-
-app.get("/api/test", (req, res) => {
-  res.json({ message: "Hello from the backend!" });
-});
-
-app.get("/api/dbTest", async (req, res) => {
-  try {
-    const [rows] = await db.query("SELECT NOW() AS now");
-    res.json({ success: true, time: rows[0].now });
-  } catch (error) {
-    console.error("DB error:", error);
-    res.status(500).json({ success: false, error: "Database error" });
-  }
-});
+app.use("/api", getSoccerFixtureListRouter());
+app.use("/api", getLiveSoccerFixtureListRouter());
 
 // 서버 실행
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => console.log(`웹소켓 서버 실행중`));
+
+
